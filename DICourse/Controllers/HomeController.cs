@@ -3,6 +3,7 @@ using DICourse.Services;
 using DICourse.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,10 +15,14 @@ namespace DICourse.Controllers
     public class HomeController : Controller
     {
         private ISMSService _sMSService;
+        private KavrnegarViewModel _kavrnegarViewModel;
+        private PasargadBankViewModel _pasargadBankViewModel;
 
-        public HomeController(ISMSService sMSService)
+        public HomeController(ISMSService sMSService, IOptions<KavrnegarViewModel> kavenegarOptions, IOptions<PasargadBankViewModel> pasargadBannkOptions)
         {
             _sMSService = sMSService;
+            _kavrnegarViewModel = kavenegarOptions.Value;
+            _pasargadBankViewModel = pasargadBannkOptions.Value;
         }
 
         public IActionResult Index()
@@ -33,6 +38,9 @@ namespace DICourse.Controllers
 
         public IActionResult Privacy()
         {
+            ViewBag.Kavenegar = _kavrnegarViewModel.Api;
+            ViewBag.Pasargad = _pasargadBankViewModel.TerminalId;
+
             return View();
         }
 

@@ -1,5 +1,6 @@
 using DICourse.Data;
 using DICourse.Services;
+using DICourse.ViewModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -39,7 +40,7 @@ namespace DICourse
 
             #region Dependencies
 
-            services.AddTransient<ISMSService, KavenegarService>();
+            DependencyContainer.RegisterServices(services, Configuration);
 
             #endregion
         }
