@@ -14,6 +14,10 @@ namespace DICourse.ViewModels
         {
             services.AddTransient<ISMSService, ParsGreenService>();
 
+            services.AddTransient<TransientService>();
+            services.AddScoped<ScopedService>();
+            services.AddSingleton<SingletonService>();
+
             services.Configure<KavrnegarViewModel>(configuration.GetSection("KavenegarAPI"));
             services.Configure<PasargadBankViewModel>(configuration.GetSection("PasargadBank"));
         }

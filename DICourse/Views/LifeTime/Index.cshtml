@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewData["Title"] = "Life Time";
+    var myList = ViewData["LifeTimeList"] as List<string>;
+}
+
+@foreach (var item in myList)
+{
+    <p>@item</p>
+}
+

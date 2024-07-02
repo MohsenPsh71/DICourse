@@ -1,4 +1,5 @@
 using DICourse.Data;
+using DICourse.MiddleWares;
 using DICourse.Services;
 using DICourse.ViewModels;
 using Microsoft.AspNetCore.Builder;
@@ -66,6 +67,8 @@ namespace DICourse
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseMiddleware<LifeTimeMiddleWare>();
 
             app.UseEndpoints(endpoints =>
             {
