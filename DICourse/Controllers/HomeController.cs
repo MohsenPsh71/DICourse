@@ -13,12 +13,18 @@ namespace DICourse.Controllers
 {
     public class HomeController : Controller
     {
+        private ISMSService _sMSService;
+
+        public HomeController(ISMSService sMSService)
+        {
+            _sMSService = sMSService;
+        }
+
         public IActionResult Index()
         {
-            var smsService = new KavenegarService();
             var result = new IndexViewModel();
 
-            result.SMSStatus = smsService.SendSMSFromKavenegar();
+            result.SMSStatus = _sMSService.SendSMS();
 
             ViewBag.status = result.SMSStatus;
 

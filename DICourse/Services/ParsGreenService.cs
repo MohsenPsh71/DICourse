@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace DICourse.Services
 {
-    public class ParsGreenService
+    public class ParsGreenService : ISMSService
     {
-        public string SendSMSFromParsGreen()
+        public string SendSMS()
         {
             return "Your SMS Send From ParsGreen";
         }

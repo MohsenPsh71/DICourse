@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace DICourse.Services
 {
-    public class KavenegarService
+    public class KavenegarService : ISMSService
     {
-        public string SendSMSFromKavenegar()
+        public string SendSMS()
         {
             return "Your SMS Send From Kavenegar";
         }
