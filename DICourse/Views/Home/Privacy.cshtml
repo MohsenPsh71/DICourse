@@ -1,7 +1,11 @@
-﻿@{
+﻿@using Microsoft.Extensions.Options;
+
+@inject IOptions<DICourse.ViewModels.KavrnegarViewModel> kavenegarOptions
+
+@{
     ViewData["Title"] = "Privacy Policy";
 }
 <h1>@ViewData["Title"]</h1>
 
-<p>Kavenegar : @ViewBag.Kavenegar</p>
+<p>Kavenegar : @kavenegarOptions.Value.Api</p>
 <p>Pasargad : @ViewBag.Pasargad</p>

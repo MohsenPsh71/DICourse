@@ -15,14 +15,10 @@ namespace DICourse.Controllers
     public class HomeController : Controller
     {
         private ISMSService _sMSService;
-        private KavrnegarViewModel _kavrnegarViewModel;
-        private PasargadBankViewModel _pasargadBankViewModel;
 
-        public HomeController(ISMSService sMSService, IOptions<KavrnegarViewModel> kavenegarOptions, IOptions<PasargadBankViewModel> pasargadBannkOptions)
+        public HomeController(ISMSService sMSService)
         {
             _sMSService = sMSService;
-            _kavrnegarViewModel = kavenegarOptions.Value;
-            _pasargadBankViewModel = pasargadBannkOptions.Value;
         }
 
         public IActionResult Index()
@@ -36,10 +32,11 @@ namespace DICourse.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Privacy(
+            [FromServices] IOptions<PasargadBankViewModel> pasargadBannkOptions
+            )
         {
-            ViewBag.Kavenegar = _kavrnegarViewModel.Api;
-            ViewBag.Pasargad = _pasargadBankViewModel.TerminalId;
+            ViewBag.Pasargad = pasargadBannkOptions.Value.TerminalId;
 
             return View();
         }

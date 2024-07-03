@@ -12,15 +12,17 @@ namespace DICourse.MiddleWares
     public class LifeTimeMiddleWare
     {
         private readonly RequestDelegate _next;
+        private readonly TransientService _transientService;
 
-        public LifeTimeMiddleWare(RequestDelegate next)
+        public LifeTimeMiddleWare(RequestDelegate next, TransientService transientService)
         {
             _next = next;
+            _transientService = transientService;
         }
         
-        public async Task InvokeAsync(HttpContext httpContext, ScopedService scopedService, SingletonService singletonService, TransientService transientService)
+        public async Task InvokeAsync(HttpContext httpContext, ScopedService scopedService, SingletonService singletonService)
         {
-            httpContext.Items.Add("TransientService", "Transient Guid From MiddleWare= " + transientService.GetGuid());
+            httpContext.Items.Add("TransientService", "Transient Guid From MiddleWare= " + _transientService.GetGuid());
             httpContext.Items.Add("ScopedService", "Scoped Guid From MiddleWare= " + scopedService.GetGuid());
             httpContext.Items.Add("SingletonService", "Singleton Guid From MiddleWare= " + singletonService.GetGuid());
 
