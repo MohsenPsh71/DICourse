@@ -16,9 +16,9 @@ namespace DICourse.Controllers
     {
         private ISMSService _sMSService;
 
-        public HomeController(ISMSService sMSService)
+        public HomeController(Func<SelectSMSPanel, ISMSService> sMSService)
         {
-            _sMSService = sMSService;
+            _sMSService = sMSService(SelectSMSPanel.ParsGreen);
         }
 
         public IActionResult Index()
